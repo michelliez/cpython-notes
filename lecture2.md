@@ -17,8 +17,8 @@ Interpreter
 
 Compiling
 - in python:
-	c = compile('test.py', 'test.py', 'exec')
-	<code object <module> at 0x1058a6d30, file "test.py", line 1>                 
+	>>> c = compile(open('test.py').read(), 'test.py', 'exec')                                                  
+	<code object <module> at 0x106115d80, file "test.py", line 1>                                                       
 - compile(source, filename, mode[, flags[, dont_inherit]]) -> code object
 	- exec to compile a module (one .py)
 - python interpreter does this for you
@@ -27,8 +27,9 @@ Compiling
 - c.co_code
 	- inside of c
 	- string
-	- b'\x80\x00]\x00P\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00- [128, 0, 93, 0, 80, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 	- [128, 0, 93, 0, 80, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  
+	- b'\x80\x00\x00\x00Z\x01p\x00Z\x02p\x01Y\x00Y\x01*\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00p\x02Y\x03\x1f\x00Y\x- 50                                                                                                                  
+
+
 - these are compiled source code into bytes (string)
 
 python -m dis test.py                                                            
@@ -53,9 +54,13 @@ python -m dis test.py
               LOAD_CONST               1 (None)                                                                                        
               RETURN_VALUE                     
 
-	- bytecodes
+	- disassembler
+	- bytecodes for each line
 	- every line can have more than one bytecode
+	- instruction name
+	- optional arguments
 	- the bytecodes in the string array match the bytecodes here based on opcode.h
+
 dis
 - inside /Lib
 - dis is part of the standard library
